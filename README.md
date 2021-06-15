@@ -1,6 +1,7 @@
 # retrospective_de_chaque-pattern
 
-Qu’est-ce qu’un design pattern ?
+### Qu’est-ce qu’un design pattern ?
+
 Un design pattern est un ensemble de bonnes pratiques ayant pour but de rendre le code plus propre, optimisé, robuste, maintenable et évolutif afin de répondre au problèmes récurrents rencontré par les développeurs. La 1ère apparition publique des design pattern vient d’un livre publié en 1977 par l’ingénieur Christopher Alexander nommé « A Pattern Language ».
 
 En 1995 le Gang of four a présenter les 23 design pattern qui font aujourd’hui office de référence dans le domaine de l’informatique.
@@ -13,7 +14,7 @@ Il existe 3 types différents de design Pattern :
 
 • Les patterns comportementaux
 
-Le design pattern FlyWeight
+### Le design pattern FlyWeight
 
 Le design pattern FlyWeight appartient au pattern de structuration
 
@@ -111,7 +112,7 @@ class FormeFactory {
 ```
 
 
-Le design pattern Composite
+### Le design pattern Composite
 
 Il existe donc le design pattern composite qui permet de gérer un ensemble d'objets en tant qu'un seul et même objet, autrement dit un objet composé de plusieurs autres.
 
@@ -207,14 +208,46 @@ public class CamionComposite implements Composant {
 }
 ```
 
+### Le design pattern Command
+Il existe 3 types de Design Pattern : Création, Structure et Comportemental. Le Design Pattern Command fait partie de la famille comportementale. Les modèles comportementaux sont des modèles de conception qui identifient les modèles de communication communs entre les objets et réalisent ces modèles. Ce faisant, ces modèles augmentent la souplesse dans l'exécution de cette communication.
+
+#### Son objectif :
+Lors d'une conception d'app on a souvent besoin d’émettre des requêtes sur n'importe quel objet, et ce, sans connaître, ni ses caractéristiques, ni ses fonctions/méthodes. C'est ici que le Command Pattern va jouer son rôle, puisque il va l’encapsuler les requêtes.
+
+*Petit rappel : l’encapsulation en POO consiste à cacher l'implémentation de l'objet, en empêchant l'accès aux données par un autre moyen que les services proposés. L'encapsulation permet donc de garantir l'intégrité des données contenues dans l'objet. C'est l'un des principes les plus importants en Java et langages similaires.*
+
+Ce pattern permet en 1er lieu, d'apporter une sécurité dans les applications, grâce à l'encapsulation. Mais il permet aussi de supprimer toutes duplications de code, au moyen d'une abstraction qui va lui permettre de fonctionner sans connaître l'objet cible ! Plus d'abstraction permet donc une meilleure maintenance du code, permettant de facilement le modifier ou l'étendre.
+
+#### L'implémentation du Command Pattern
+
+![alt text](https://www.codingame.com/servlet/fileservlet?id=23452463760020)
+
+Ce diagramme en notation UML nous montre comment fonctionne ce pattern.
+
+Analysons ce diagramme du pattern :
+
+Le client va déclencher une requête, ici c'est ce qu'on apelle le rôle d'Invoker et ici c'est le Caller.
+Cette requête à une commande qui lui est associée, dans notre diagramme c'est la ConcreteCommand qui implémente l'interface Commande.
+La ConcreteCommande , grâce à la requête, va ensuite déclencher la méthode de l'objet associée, c'est le Receiver de notre diagramme.
+
+#### Exemple d'une application du Command Pattern
+
+Une personne veut aller ou éteindre son ordinateur :
+
+**Avec le pattern command :** La personne actionne l’Invoker de son ordinateur, ici c'est un switch.
+La ConcreteCommande « RestartCommand » ou « ShutDownCommand » est exécutée
+Cela permet ensuite d'invoquer les méthodes shutDown() et restart() du Computer (Receiver). L'encapsulation permet de le faire fonctionner sur n'importe quel objet qui aurait une méthode restart() et shutDown().
+
+**Sans pattern command :** La personne commande l'arrêt ou le démarrage de son ordinateur. Il va créer un objet Computer et apeller les méthodes restart() et shutDown().
+
+![alt text](https://www.codingame.com/servlet/fileservlet?id=23452475687364)
+
+Grâce à cet exemple, nous pouvons voir ici le rôle majeur du Command Pattern à savoir l'encapsulation. En l'appliquant, à note programme le client ne sait rien de se qui se passe. L’objet Computer, et méthodes qui lui sont appliquées pour l'éteindre ou l'allumer restent encapsulées !
 
 
 
 
-
-
-
-Le design pattern Proxy
+### Le design pattern Proxy
 
 En pratique, le proxy implémente la même interface que l’objet auquel il sert d’écran, car il va se substituer à lui !
 Ce design pattern fait état de relations entre des objets, voilà pourquoi on dit qu’il est structurel ! Proxy (ou Procuration ou encore Surrogate en anglais) a des similitudes avec un autre pattern structurel : Décorateur. Cependant, il convient de bien garder à l’esprit que si Décorateur a pour but d’ajouter des fonctionnalités à l’objet décoré, Proxy est souvent là pour effectuer un contrôle d’accès à un objet.
